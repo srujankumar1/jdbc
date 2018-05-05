@@ -1,0 +1,141 @@
+1) Can we create a New table with any old table structure ?
+
+A: Yes we can. That is while creation of new table ,use any false condition as below
+   example.
+   
+Ex:
+   create table  emp_new
+   as
+   select * from emp_old  where 1=2;
+
+2) What is Materialized view? 
+
+A: A view which contains physical data dynamically is known as materialized view.
+   Materialized views are created to perform analysis on running business data.
+
+3) How to enable or disable constraint on any table?
+
+A: By using ALTER command , we can enable or disable the following constraints.
+   PRIMARY KEY
+   FOREIGN KEY
+   UNIQUE KEY
+   CHECK CONSTRAINT
+
+Ex: alter table <table_name>
+    ENABLE / DISABLE  <constraint_name>;
+
+4) Can we add a constraint if the column having invalid data according to constraint?
+
+A: Yes we can add a constraint without checking existing data ,by using 
+   NO VALIDATE CONSTRAINT.
+
+   [ But before doing above , the table created with DIFFERABLE column. On this column
+     we can add NO VALIDATE constraint ]
+
+5) What is ROWID and its use?
+
+A: It is a pseudo column ,which contains physical address of each record.
+
+6) How to find nth highest salary?
+
+A: select distinct * 
+   from(select sal,dense_rank() over(order by sal desc ) rank from emp)
+   where rank=n
+
+Note: In the above example , n value is any integer value like 1,2,3,4.. . .
+
+7) What is the difference between TRUNCATE and DELETE operations?
+
+A: Truncate command delete all the records from the table permanently.
+   Delete command delete all or some of records from the table , but we can restore 
+   deleted records using rollback.
+
+8) What is the difference between Inner join and Correlated join?
+
+A: Inner join will display only matched data from both tables according to join
+   condition.
+   OUTER join will display complete data from any one table and only matched data
+   according to join condition.
+
+9) We are not allowed to perform one dml operation on COMPOSITE VIEW, what is that?
+
+A: Insert operation is not allowed on any composite view.
+
+10) Can we add ON DELETE CASCADE  to the existing FOREIGN KEY column?
+
+A: No .
+
+11) What is CORRELATED subquery, Is it increasing performance?
+
+A: A sub query which depends on Outer query result is known as Correlated subquery.
+   It will decrease performance.
+
+12) What is the use index , why it is and what is the difference between 
+    view and index?
+
+A: Index is a data base object which contains ordered data from column ,physically.
+   Index is useful to search for the required data as much as fast.
+
+   View is a logical table.
+   Index is like a physical table.
+
+13) what is GROUP BY clause?
+
+A:  Group by clause internally makes logical groups based on distinct values 
+    from column.
+
+14) what is the difference between HAVING and WHERE clauses?
+ 
+A:  Where clause is used to filter table data.
+    Having clause is used to filter GROUP BY output.
+
+15) what are the differences between PROCEDURES AND  FUNCTIONS?
+
+A:  By default, Procedures cannot return any value.
+    By default, functions return a value.
+
+    Procedures cannot called using SELECT QUERY
+    we can all a function from any other object.
+
+16) What is the instead of triggers?
+
+A: Instead of triggers are implemented on composite views  only.
+
+17) What is FOR EACH ROW  in a trigger?
+
+A: It makes the trigger as ROW LEVEL TRIGGER.
+
+18) What is the use of BULK COLLECT?
+
+A: Bulk collect reduce the CONTEXT SWITCH between cursor area and program area.
+   so it improves performance of pl/sql program.
+
+19) What are PL/SQL TABLES?
+
+A: Multi dimensional arrays are known as PL/SQL tables, to store a group of records
+   with same structure at contiguous memory locations.
+
+20) How do i create user defined record strucutre?
+
+A: By using TYPE, WE CAN create user defined record.
+
+21) What is a local procedure?
+
+A:  A procedure which is created inside  a package is known as local procedure.
+
+22) What is a cursor?
+
+A: A cursor is a pointer to the temporary memory,to perform intermediate operations
+   before output delivered to the client.
+
+23) How can i see the source code of any database object?
+
+A: select 
+   dbms_metadata.get_ddl('object_type','Object_name')
+   from dual;
+--------------------------------------------------------------------------------------
+
+   
+   
+
+
