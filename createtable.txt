@@ -1,0 +1,57 @@
+ADV JAVA[JDBC]
+-------------------------
+Example to create table in DB by using Type-4 driver provided Oracle:
+----------------------------------------------------------------------------------
+Type-4 driver [Oracle]
+-----------------------
+Driver Class: oracle.jdbc.driver.OracleDriver[Deprecated]
+oracle.jdbc.OracleDriver[New]
+Driver URL : jdbc:oracle:thin:@localhost:1521:xe[Oraclexe]
+jdbc:oracle:thin:@localhost:1521:ORCL[OracleG]
+oracle111.jar --> Oracle8i and oracle9i versions.
+oracle123.jar
+ojdbc14.jar ---> Oracle10g/10xe
+ojdbc6.jar ----> Oracle11g/11xe[Java6 and above]
+ojdbc5.jar ----> Oracle11g/11xe[JDK5.0]
+C:\oraclexe\app\oracle\product\11.2.0\server\jdbc\lib
+\ojdbc6.jar
+set classpath=C:\oraclexe\app\oracle\product\11.2.0\server
+\jdbc\lib\ojdbc6.jar;
+Ex:
+---
+package com.durgasoft.jdbc;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
+public class JdbcApp02 {
+public static void main(String[] args) {
+Connection con = null;
+Statement st = null;
+BufferedReader br = null;
+try {
+Class.forName("oracle.jdbc.OracleDriver");
+con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "system", "durga");
+st = con.createStatement();
+br = new BufferedReader(new InputStreamReader(System.in));
+System.out.print("Table Name :");
+String tname = br.readLine();
+String query = "create table "+tname+"(ENO number primary key,ENAME varchar2(10), ESAL float, EADDR varchar2(10))";
+st.executeUpdate(query);
+System.out.println("Table "+tname+" Created Successfully");
+} catch (Exception e) {
+e.printStackTrace();
+}finally {
+try {
+br.close();
+st.close();
+con.close();
+} catch (Exception e) {
+e.printStackTrace();
+}
+}
+}
+}
+
+
